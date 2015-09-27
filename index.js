@@ -49,28 +49,3 @@ module.exports = {
     startTime: startTime,
     startDate: startDate
 };
-
-
-/**
- * groupwrite
- * send a group write telegram to a group address (for DPT5 values)
- */
-function groupwrite(opts, gad, value, callback) {
-
-  var conn = eibd.Connection();
-
-  var address = eibd.str2addr(gad);
-
-  conn.socketRemote(opts, function() {
-    conn.openTGroup(address, 1, function (err) {
-
-      if(err) {
-        callback(err);
-      } else {
-      var msg = eibd.createMessage('write', 'DPT5', parseInt(value));
-      conn.sendAPDU(msg, callback);
-      }
-
-    });
-  });
-}
