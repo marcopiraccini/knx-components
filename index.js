@@ -3,7 +3,7 @@ var eibd = require('eibd');
 var moment = require('moment');
 var timeJob, dateJob;
 
-var createTimeJob = function (opts, addresses, cronStr, dptType, value, callback) {
+var createScheduledJob = function (opts, addresses, cronStr, dptType, value, callback) {
     schedule.scheduleJob(cronStr, function() {
         var conn = eibd.Connection();
         conn.socketRemote(opts, function() {
@@ -42,7 +42,7 @@ var startDate = function (opts, addresses, cronStr, callback) {
     var mom =  moment();
     time[0] = mom.month() + 1; // for moment, january it's 0.
     time[1] = mom.year();
-    timeJob = createTimeJob(opts, addresses, cronStr, 'DPT11',callback);
+    dateJob = createScheduledJob(opts, addresses, cronStr, 'DPT11',callback);
 };
 
 module.exports = {
