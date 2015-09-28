@@ -1,17 +1,19 @@
 {
-  "name": "knx-api",
+  "name": "knx-components",
   "version": "0.0.1",
   "author": "Marco Piraccini <marco.piraccini@gmail.com>",
   "description": "Knx Software Components",
   "scripts": {
-    "mocha": "mocha ./test",
-    "test": "npm run-script mocha && npm run-script jshint",
     "jshint": "node_modules/jshint/bin/jshint  *.js",
     "start": "node main.js | node_modules/.bin/bunyan"
+  },
+  "bin": {
+    "time-gen": "./bin/knxdtgen.js"
   },
   "main": "server.js",
   "dependencies": {
     "bunyan": "^1.2.3",
+    "commander": "^2.8.1",
     "debug": "^2.1.1",
     "eibd": "^0.3.1",
     "hapi": "^8.0.0",

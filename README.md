@@ -13,23 +13,15 @@ To use it, just:
 Then in your code:
 
 ```
-var cronTime = "* * * * *"; // Every minute
-var addresses = ['0/0/143', '0/0/144'];
-var opts = { host: '192.168.69.150', port: 6720};
-require('knx-components').startTime(opts, addresses, cronTime, function (err) {
-        console.log('An error has occurred', err);
-});
-```
-
-Or:
-
-```
 var cronDate = "0 0 * * *"; // Every day (at midnight)
 var addresses = ['0/0/143', '0/0/144'];
 var opts = { host: '192.168.69.150', port: 6720};
-require("knx-components").startDate(opts, addresses, cronDate, function (err) {
+require("knx-components").startDateTimeJob(opts, addresses, cronDate, genTime, genDate, function (err) {
     console.log('An error has occurred', err);
 });
 ```
 
-Subsequent calls of startTime / startDate will substitute the previous schedule with the new one.
+Subsequent calls of startDateTimeJob will substitute the previous schedule with the new one.
+
+CLI (-t: generate time, -d: generate date):
+`knxdtgen -H 192.168.69.150 -p 6720 -g 0/0/143 -td`
