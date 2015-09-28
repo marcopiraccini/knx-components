@@ -25,7 +25,7 @@ var getCurrentDate = function () {
     var mom =  moment();
     date[0] = mom.date();
     date[1] = mom.month() + 1; // for moment, january it's 0.
-    date[2] = mom.year();
+    date[2] = Number(mom.year().toString().substr(2,3));
     return date;
 };
 
@@ -36,11 +36,13 @@ var createScheduledJob = function (opts, addresses, cronStr, genTime, genDate, c
         return eibd.str2addr(gad);
     });
 
+    var conn = eibd.Connection();
+
     schedule.scheduleJob(cronStr, function(err) {
         if (err) {
             return callback(err);
         }
-        var conn = eibd.Connection();
+
         conn.socketRemote(opts, function(err) {
             if (err) {
                 return callback(err);
@@ -53,13 +55,11 @@ var createScheduledJob = function (opts, addresses, cronStr, genTime, genDate, c
                         var msg, time, date;
                         if (genTime) {
                             time = getCurrentTime();
-                            console.log("sending time:", time, " to:", gad);
                             msg = eibd.createMessage('write', 'DPT10', time);
                             conn.sendAPDU(msg, callback);
                         }
                         if (genDate) {
                             date = getCurrentDate();
-                            console.log("sending date:", date, " to:", gad);
                             msg = eibd.createMessage('write', 'DPT11', date);
                             conn.sendAPDU(msg, callback);
                         }
