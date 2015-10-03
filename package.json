@@ -15,7 +15,7 @@
     "bunyan": "^1.2.3",
     "commander": "^2.8.1",
     "debug": "^2.1.1",
-    "eibd": "^0.3.1",
+    "eibd": "gti+ssh://git@github.com:marcopiraccini/node-eibd.git",
     "hapi": "^8.0.0",
     "mocha": "2.0.1",
     "node-schedule": "^0.2.9"
