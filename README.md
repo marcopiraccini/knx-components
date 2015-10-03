@@ -8,8 +8,8 @@ on how to write the cron string.
 
 To use it, just:
 
-`npm i knx-components --save
-`
+```npm i knx-components --save ```
+
 Then in your code:
 
 ```
@@ -24,4 +24,5 @@ require("knx-components").startDateTimeJob(opts, addresses, cronDate, genTime, g
 Subsequent calls of startDateTimeJob will substitute the previous schedule with the new one.
 
 CLI (-t: generate time, -d: generate date):
-`knxdtgen -H 192.168.69.150 -p 6720 -g 0/0/143 -td`
+
+```knxdtgen -H 192.168.69.150 -p 6720 -g 0/0/143 -td```
